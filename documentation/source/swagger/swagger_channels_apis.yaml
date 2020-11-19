@@ -1037,11 +1037,14 @@ components:
       properties:
         name:
           type: string
+          maxLenght: 80
+          pattern: \w*\W*
           description: "Nome da Instituição, pertencente à organização, responsável pelo Canal Telefônico."
           example: "Empresa da Marca A"
         urlComplementaryList:
           type: string
           maxLength: 1024
+          pattern: \w*\W*
           example: "https://example.com/mobile-banking"
         phoneChannels:
           type: array
@@ -1076,10 +1079,12 @@ components:
             - OUTROS
           description: "Tipo de canal telefônico de atendimento"
           example: "OUVIDORIA"
+          maxLenght: 30
         additionalInfo:
           type: string
           maxLength: 256
           description: "Campo de texto livre para descrever quando o tipo de canal de atendimento for Outros"
+          pattern: \w*\W*
         phones:
           type: array
           items:
@@ -1108,7 +1113,8 @@ components:
                 description: "Número de telefone de acesso ao canal. "
               additionalInfo:
                 type: string
-                maxLength: 100
+                pattern: \w*\W*
+                maxLength: 300
                 example: "Mensagem complementar necessária para o agrupamento da identificação do telefone."
     #### PhoneChannelServices ####
     PhoneChannelServices:
@@ -1138,6 +1144,7 @@ components:
         additionalInfo:
           type: string
           maxLength: 2000
+          pattern: \w*\W*
           description: "Campo de texto livre para descrever mais sobre os serviços"
           example: ""
     Availability:
