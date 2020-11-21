@@ -163,7 +163,7 @@
 |     Nome          |  Tipo                                                       | Obrigatório  |                            Definição                                                                      |
 |:------------------|:----------------------------------------------------------- |:------------ |:--------------------------------------------------------------------------------------------------------- | 
 | data              | object                                                      | Sim          |                                                                                                           |
-| » brand           | [PersonalCreditCardBrand](#schemaPersonalCreditCardBrand) | Sim          | Dados da Marca selecionada que fornecem produtos e serviços de cartões de crédito para pessoa jurídica    |
+| » brand           | [PersonalCreditCardBrand](#schemaPersonalCreditCardBrand)   | Sim          | Dados da Marca selecionada que fornecem produtos e serviços de cartões de crédito para pessoa jurídica    |
 | links             | [LinksPaginated](#schemaLinksPaginated)                     | Sim          |                                                                                                           |
 | meta              | [MetaPaginated](#schemaMetaPaginated)                       | Sim          |                                                                                                           |
 
@@ -314,10 +314,10 @@
 }
 ```
 
-|     Nome     |  Tipo                                                               | Obrigatório  |                            Definição                 |
-|:-------------|:--------------------------------------------------------------------|:-----------  |:---------------------------------------------------- |
-| name         | string                                                              | Sim          | Nome da Marca selecionada pelas Organizações         |
-| companies    | [[PersonalCreditCardCompanies](#schemaPersonalCreditCardCompanies)] | Sim          | Lista de instituições pertencentes a marca           |
+|     Nome     |  Tipo                                                               | Obrigatório  |                            Definição                                                                                                                                                                                                      |
+|:-------------|:--------------------------------------------------------------------|:-----------  |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | string                                                              | Sim          | Nome da Marca reportada pelo participante do Open Banking. O conceito a que se refere a 'marca' é em essência uma promessa da empresa em fornecer uma série específica de atributos, benefícios e serviços uniformes aos clientes         |
+| companies    | [[PersonalCreditCardCompanies](#schemaPersonalCreditCardCompanies)] | Sim          | Lista de instituições pertencentes a marca                                                                                                                                                                                                |
 
 ## PersonalCreditCardCompanies 
 <a id="schemaPersonalCreditCardCompanies"></a>
@@ -461,12 +461,12 @@
 }
 ```
 
-|     Nome             |  Tipo                                                | Obrigatório    |    Definição                       |
-|:---------------------|:-----------------------------------------------------|:-------------- |:-----------------------------------|
-| name                 | string                                               | Sim            | Nome da instituição financeira     |
-| cnpjNumber           | string                                               | Sim            | CNPJ da instituição financeira     |
-| urlComplementaryList | string                                               | Não            | URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber |
-| personalCreditCards  | [[PersonalCreditCard](#schemaPersonalCreditCard)]  | Sim            | Lista  de cartões de crédito       |
+|     Nome             |  Tipo                                                | Obrigatório    |    Definição                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|:---------------------|:-----------------------------------------------------|:-------------- |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name                 | string                                               | Sim            | Nome da Instituição, pertencente à marca, responsável pela modalidade de Conta de Pagamento Pós Paga (Cartão)  para Pessoa Natural. p.ex.'Empresa da Organização A'                                                                                                                                                                                                                                                                                                          |
+| cnpjNumber           | string                                               | Sim            | Número completo do CNPJ da instituição. O CNPJ corresponde ao número de inscrição no Cadastro de Pessoa Jurídica. Deve-se ter apenas os números do CNPJ, sem máscara                                                                                                                                                                                                                                                                                                         |
+| urlComplementaryList | string                                               | Não            | URL de link para lista complementar com os nomes e CNPJs agrupados para o caso instituições ofertantes de produtos e serviços com as mesmas características. URL do link que conterá a lista complementar com os nomes e CNPJs agrupados sob o mesmo cnpjNumber.Endereço eletrônico de acesso ao canal. URLs são limitadas a 2048 caracteres mas, para o contexto do Sistema Financeiro aberto, será adotado a metade deste tamanho. Ex. 'https://example.com/mobile-banking'|
+| personalCreditCards  | [[PersonalCreditCard](#schemaPersonalCreditCard)]    | Sim            | Lista  de cartões de crédito                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ## PersonalCreditCard
 <a id="schemaPersonalCreditCard"></a>
@@ -603,14 +603,14 @@
 }
 ```
 
-|     Nome              |  Tipo                                                                       | Obrigatório |                            Definição                                      |
-|:----------------------|:----------------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------|
-| name                  | string                                                                      | Sim         | Denominação/Identificação do nome da conta (cartão de crédito)            |
-| identification        | [PersonalCreditCardIdentification](#schemaPersonalCreditCardIdentification) | Sim         | Informações de identificação do cartão de crédito                         |
-| rewardsProgram        | [PersonalCreditCardRewardProgram](#schemaPersonalCreditCardRewardProgram)   | Sim         | Informações sobre programas de recompensa presentes no cartão de crédito  |
-| fees                  | [PersonalCreditCardFee](#schemaPersonalCreditCardFee)                       | Sim         | Informações sobre tarifas cobradas sobre o produto e serviços             |
-| interest              | [CreditCardInterest](#schemaCreditCardInterest)                             | Sim         | Informações sobre taxas de juros                                          |
-| termsConditions       | [CreditCardTermsConditions](#schemaCreditCardTermsConditions)               | Sim         | Informações sobre termos e condições para aquisição e cancelamento        |
+|     Nome              |  Tipo                                                                       | Obrigatório |                            Definição                                                                                                                                                                                                                                                        |
+|:----------------------|:----------------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name                  | string                                                                      | Sim         | Denominação/Identificação do nome da conta de pagamento pós-paga (cartão).Conforme CIRCULAR Nº 3.680,BCB, 2013: 'conta de pagamento pós-paga: destinada à execução de transações de pagamento que independem do aporte prévio de recursos' p.ex. 'Cartão Universitário Bem-Vindo'           |
+| identification        | [PersonalCreditCardIdentification](#schemaPersonalCreditCardIdentification) | Sim         | Informações de identificação do cartão de crédito                                                                                                                                                                                                                                           |
+| rewardsProgram        | [PersonalCreditCardRewardProgram](#schemaPersonalCreditCardRewardProgram)   | Sim         | Informações sobre programas de recompensa presentes no cartão de crédito                                                                                                                                                                                                                    |
+| fees                  | [PersonalCreditCardFee](#schemaPersonalCreditCardFee)                       | Sim         | Informações sobre tarifas cobradas sobre o produto e serviços                                                                                                                                                                                                                               |
+| interest              | [CreditCardInterest](#schemaCreditCardInterest)                             | Sim         | Informações sobre taxas de juros                                                                                                                                                                                                                                                            |
+| termsConditions       | [CreditCardTermsConditions](#schemaCreditCardTermsConditions)               | Sim         | Informações sobre termos e condições para aquisição e cancelamento                                                                                                                                                                                                                          |
 
 
 ## PersonalCreditCardIdentification
@@ -644,10 +644,10 @@
 }
 ```
 
-|     Nome          |  Tipo        | Obrigatório    |    Definição                   |
-|:----------------- |:------------ |:-------------- |:------------------------------ |
-| type              | [Enum PersonalCreditCardProductType](#schemaEnumPersonalCreditCardProductType) | Sim  | Categoria atribuída a um cartão de pagamento, sob uma certa denominação, que lhe agrega um conjunto de vantagens, diferenciando-o de acordo com o perfil do portador. Essa categoria é definida pelo BACEN e está contida no documento de nome 'Elaboração e Remessa de Informações Relativas aos Cartões de Pagamento  Emissores' |
-| additionalInfo    | string                                                                         | Sim  | Texto livre para especificar                              |
+|     Nome          |  Tipo                                                                          | Obrigatório    |    Definição                                                                                                                                                                                                                                                                                                                       |
+|:----------------- |:------------------------------------------------------------------------------ |:-------------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type              | [Enum PersonalCreditCardProductType](#schemaEnumPersonalCreditCardProductType) | Sim            | Categoria atribuída a um cartão de pagamento, sob uma certa denominação, que lhe agrega um conjunto de vantagens, diferenciando-o de acordo com o perfil do portador. Essa categoria é definida pelo BACEN e está contida no documento de nome 'Elaboração e Remessa de Informações Relativas aos Cartões de Pagamento  Emissores' |
+| additionalInfo    | string                                                                         | Não            | Informações complementares se tipo de Cartão 'OUTROS'                                                                                                                                                                                                                                                                              |
 
 ### Enum PersonalCreditCardProductType
 <a id="schemaEnumPersonalCreditCardProductType"></a>
@@ -686,10 +686,10 @@
 }
 ```
 
-|     Nome          |  Tipo        | Obrigatório    |    Definição                   |
-|:----------------- |:------------ |:-------------- |:------------------------------ |
+|     Nome          |  Tipo                                                                      | Obrigatório    |    Definição                                                                                                                                                                                                                                                                                                                              |
+|:----------------- |:-------------------------------------------------------------------------- |:-------------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
 | network           | [Enum PersonalCreditCardBrandCode](#schemaEnumPersonalCreditCardBrandCode) | Sim            | Categoria de Bandeiras de Cartões. Bandeira é a detentora de todos os direitos e deveres da utilização da marca estampada no cartão, inclusive as bandeiras pertencentes aos emissores. Essas bandeiras estão definidas em documento do BACEN de nome 'Elaboração e Remessa de Informações Relativas aos Cartões de Pagamento  Emissores' |
-| additionalInfo    | string                                                                     | Sim            | Texto livre para especificar categoria de bandeira marcada como 'Outras' |
+| additionalInfo    | string                                                                     | Sim            | Texto livre para especificar categoria de bandeira marcada como 'Outras'                                                                                                                                                                                                                                                                  |
 
 ### Enum PersonalCreditCardBrandCode
 <a id="schemaEnumPersonalCreditCardBrandCode"></a>
@@ -755,9 +755,9 @@
 }
 ```
 
-|     Nome   |  Tipo                                                               | Obrigatório     |    Definição                           |
-|:-----------|:--------------------------------------------------------------------|:----------------|:-------------------------------------- |
-| service    | [[PersonalCreditCardService](#schemaPersonalCreditCardService)]     | Sim             | Informações de tarifas sobre serviços  |
+|     Nome   |  Tipo                                                               | Obrigatório     |    Definição                                                                               |
+|:-----------|:--------------------------------------------------------------------|:----------------|:------------------------------------------------------------------------------------------ |
+| service    | [[PersonalCreditCardService](#schemaPersonalCreditCardService)]     | Sim             | Lista das Tarifas cobradas sobre Serviço relacionadas a Modalidade de Pagamento Pós-Pagas  |
 
 ## PersonalCreditCardService
 <a id="schemaPersonalCreditCardService"></a>
@@ -791,15 +791,15 @@
 }
 ```
 
-|     Nome   |  Tipo  | Obrigatório     |    Definição   |
-|:---------- |:-------|:----------------|:-------------- |
-| name                | [Enum PersonalCreditCardFeesServiceName](#schemaEnumPersonalCreditCardFeesServiceName) | Sim         | Denominação de Serviços relacionados à Modalidade de Contas de Pagamento Pós-Pagas (Vide ENUM) |
-| code                | [Enum PersonalCreditCardFeesServiceCode](#schemaEnumPersonalCreditCardFeesServiceCode) | Sim         | Códigos de Serviços relacionados à Modalidade de Contas de Pagamento Pós-Pagas (Vide ENUM)               |
-| chargingTriggerInfo | string                                | Sim | Fatos geradores de cobrança que incidem sobre as Modalidades informadas de Contas de Pagamento Pós-Pagas para pessoa jurídica                  |
-| prices              | [[Price](#schemaPrice)]               | Sim | Informações sobre a tarifa cobrada, relativa ao serviço relacionado à Modalidade informada de Contas de Pagamento Pós-Pagas para pessoa jurídica  |
-| minimum             | [[MinimumPrice](#schemaMinimumPrice)] | Sim | Valor mínimo cobrado para a taxa de remuneração relativa ao serviço ofertado sobre a base de clientes no mês de referência. Este campo deve estar obrigatoriamente preenchido se não houver conteúdo para os itens: value, currency e type
-| maximum             | [[MaximumPrice](#schemaMaximumPrice)] | Sim | Valor máximo cobrado para a taxa de remuneração relativa ao serviço ofertado sobre a base de clientes no mês de referência. Este campo deve estar obrigatoriamente preenchido se não houver conteúdo para os itens: value, currency e type |
-| customers           | [[Customer](#schemaCustomer)]         | Sim |                                                                                              |
+|     Nome            |  Tipo                                                                                   | Obrigatório     |    Definição                                                                                                                                                                                                                                                       |
+|:------------------- |:---------------------------------------------------------------------------------------|:-----------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name                | [Enum PersonalCreditCardFeesServiceName](#schemaEnumPersonalCreditCardFeesServiceName) | Sim              | Lista de denominação de Serviços relacionados à Modalidade de Contas de Pagamento Pós-Pagas, para pessoa natural (Vide Enum)                                                                                                                                       |
+| code                | [Enum PersonalCreditCardFeesServiceCode](#schemaEnumPersonalCreditCardFeesServiceCode) | Sim              | Sigla de identificação do Serviço relacionado à Modalidade de Contas de Pagamento Pós-Pagas para pessoa natural informada. (Vide Enum)                                                                                                                             |
+| chargingTriggerInfo | string                                                                                 | Sim              | Fatos geradores de cobrança que incidem sobre as Modalidades de  Contas de Pagamento Pós-Pagas informada, para pessoa natural. Conforme serviços prioritários previstos na resolução 3919.                                                                         |
+| prices              | [[Price](#schemaPrice)]                                                                | Sim              | Informações sobre a tarifa cobrada, relativa ao serviço relacionado à Modalidade informada de Contas de Pagamento Pós-Pagas para pessoa jurídica                                                                                                                   |
+| minimum             | [[MinimumPrice](#schemaMinimumPrice)]                                                  | Sim              | Percentual mínimo cobrado (taxa efetiva) no mês de referência, pela utilização do crédito rotativo(A apuração deve pode ser feita com até 4 casas decimais. A representação de porcentagem p.ex: do 0.1500 representa 15%. Desta forma, o valor 1 representa 100%) |
+| maximum             | [[MaximumPrice](#schemaMaximumPrice)]                                                  | Sim              | Percentual máximo cobrado (taxa efetiva) no mês de referência, pela utilização do crédito rotativo(A apuração deve pode ser feita com até 4 casas decimais. A representação de porcentagem p.ex: do 0.1500 representa 15%. Desta forma, o valor 1 representa 100%) |
+| customers           | [[Customer](#schemaCustomer)]                                                          | Sim              | Lista percentual de clientes por faixa de preço                                                                                                                                                                                                                    |
 
 ### Enum PersonalCreditCardFeesServiceName
 <a id="schemaEnumPersonalCreditCardFeesServiceName"></a>
